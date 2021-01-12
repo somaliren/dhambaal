@@ -10,7 +10,13 @@ endif::[]
 :pygments-style: emacs
 
 
-=== Week0: Python Environment Setup 
+= Web Application Development with Python(Flask) Workshop 
+
+In this workshop we will build a web application using Flask.
+Flask is a *micro web framework* written in Python. It is classified as a microframework because it does not require particular tools or libraries. It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions.
+
+
+== Week 0: Python Environment Setup 
 
 - Install Python
 - Install VS Code
@@ -18,9 +24,24 @@ endif::[]
 - Git/Github 
 - Download git from https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-=== Week1: Python Language Refresher
+
+== Git Basics
+
+[source,bash]
+----
+git --verison
+git init #initialize git
+git status # status of the project
+git add <file-name> # Add a single file
+git add . # add all files
+git commit -m " Message " # commit git
+git push # push to your repository's main branch
+git putsh origin <branch-name>
+git branch <branch-name>
+
+----
+== Week 1: Python Language Refresher
  - PEP8 Naming Conventions
- - String
  - List
  - Tuple 
  - Sets
@@ -30,61 +51,6 @@ endif::[]
  - Standard Libraries
  - Generators
  - Context Managers
-
-=== Week2: Build Web apps with Flask: Part1
-
-- Introduction to Flask
-- Creating simple flask app
-- Creating flask templates
-- Creatig summary model
-- Adding values through REPL
-- Displaying summaries in the frontend
-
-=== Week3: Build Web apps with Flask: Part2
-
-- Flask Forms
-- Forms for summary Model
-- Form Validations
-
-=== Week4:Build Web apps with Flask: Part3(Theming)
-
-- CSS Frontend Framworks 
-- Custom CSS
-- Navbar and Logo
-
-=== Week5:Build Web apps with Flask: Part4(User Authentication)
-
-TIP: Flask-login, Flask-Bcrypt,Flask-Migrate
-
-- Creating User Model
-- Creating Users Form
-- User routes & templates
-
-=== Week6: Build Web apps with Flask
-
-- Creating Categories Model,view and tempalte
-- Integrating categories with summaries
-- Filtering Summaries by category
-
-=== Week7: App restructuring 
-
-=== Week8: Creating Tests
-
-=== Week9: Creating Multiple Environment (Development,Testing,Production)
-
-=== Week10: Automated Deployment With Docker, Travis-CI,Git/Github 
-
-
-==  Web Application Development with Python(Flask) Workshop 
-
-This workshop will teach you how to code with pyhton more efficiently by following the pythonic way of writing python code.
-
-In this workshop we will build a web application using Flask.
-Flask is a *micro web framework* written in Python. It is classified as a microframework because it does not require particular tools or libraries. It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions.
-
-
-
-
 
 === PEP8 Naming Conventions
 ==== What is PEP 8?
@@ -145,7 +111,61 @@ list_ = [12,34,6]
 ----
 
 ==== The most important naming conventions
+
 ==== regular_variables
 Variable names should be *lowercase*, where necessary separating words by underscores
+
+=== List
+
+
+== Week 2: Build Web apps with Flask: Part1
+
+- Introduction to Flask
+- Creating simple flask app
+- Creating flask templates
+- Creating summary model
+- Adding values through REPL
+- Displaying summaries in the frontend
+
+== Week 3: Build Web apps with Flask: Part2
+
+- Flask Forms
+- Forms for summary Model
+- Form Validations
+
+== Week 4:Build Web apps with Flask: Part3(Theming)
+
+- CSS Frontend Framworks 
+- Custom CSS
+- Navbar and Logo
+
+== Week 5:Build Web apps with Flask: Part4(User Authentication)
+
+TIP: Flask-login, Flask-Bcrypt,Flask-Migrate
+
+- Creating User Model
+- Creating Users Form
+- User routes & templates
+
+== Week 6: Build Web apps with Flask
+
+- Creating Categories Model,view and tempalte
+- Integrating categories with summaries
+- Filtering Summaries by category
+
+== Week7: App restructuring 
+- Introducing Flask Blueprints
+
+== Week8: Creating Tests
+
+== Week9: Creating Multiple Environment (Development,Testing,Production)
+
+== Week10: Automated Deployment With Docker, Travis-CI,Git/Github 
+
+
+
+
+
+
 
 
