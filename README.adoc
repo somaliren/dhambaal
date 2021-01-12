@@ -36,16 +36,16 @@ git add <file-name> # Add a single file
 git add . # add all files
 git commit -m " Message " # commit git
 git push # push to your repository's main branch
-git putsh origin <branch-name>
+git push -u origin <branch-name>
 git branch <branch-name>
-
 ----
+
 == Week 1: Python Language Refresher
  - PEP8 Naming Conventions
- - List
+ - *List*
  - Tuple 
  - Sets
- - Dict
+ - *Dict*
  - Functions
  - Classes
  - Standard Libraries
