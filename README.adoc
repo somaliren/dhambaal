@@ -43,14 +43,15 @@ git branch <branch-name>
 == Week 1: Python Language Refresher
  - PEP8 Naming Conventions
  - *List*
- - Tuple 
- - Sets
+ - *Tuple*
+ - *Sets*
  - *Dict*
- - Functions
- - Classes
- - Standard Libraries
+ - *Functions*
+ - *Classes*
+ - *Standard Libraries*
  - Generators
  - Context Managers
+ - *Decorators*
 
 === PEP8 Naming Conventions
 ==== What is PEP 8?
