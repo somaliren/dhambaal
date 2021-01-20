@@ -8,15 +8,15 @@
 # for example users enters 4 
 # clas openingpositions: name, location , years of e
 # TODO3: Show the user opening jobs to apply
-# opening jobs will be displayed according the users experience
+# opening jobs will be displayed according to the user's experience
 # opening jobs will have name, location, years of experience fields
 # so if the user's input value [years of experience] is greater or equal to any of the opening jobs experience field 
 # then show the list like this
 # We have two opening Jobs which one would you like to apply
 # 1- Network in mogadishu 
 # 2- systems in Kismayo
-# classes
-# opening positons
+# create these classes to organize your code
+# opening positions
 # benefits 
 # projects 
 # company  - invite
