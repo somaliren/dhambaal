@@ -116,7 +116,43 @@ list_ = [12,34,6]
 ==== regular_variables
 Variable names should be *lowercase*, where necessary separating words by underscores
 
-=== List
+=== Generators
+
+Generators have been an important part of Python ever since they were introduced with PEP 255.
+
+Generator functions allow you to declare a function that behaves like an iterator.
+
+They allow programmers to make an iterator in a fast, easy, and clean way.
+
+What’s an iterator, you may ask?
+
+An iterator is an object that can be iterated (looped) upon. It is used to abstract a container of data to make it behave like an iterable object. You probably already use a few iterable objects every day: strings, lists, and dictionaries to name a few.
+
+An iterator is defined by a class that implements the Iterator Protocol. This protocol looks for two methods within the class: __iter__ and __next__.
+
+Whoa, step back. Why would you even want to make iterators?
+
+Saving memory space
+Iterators don’t compute the value of each item when instantiated. They only compute it when you ask for it. This is known as lazy evaluation.
+
+Lazy evaluation is useful when you have a very large data set to compute. It allows you to start using the data immediately, while the whole data set is being computed.
+
+Let’s say we want to get all the even numbers that are smaller than a maximum number.
+
+We first define the function that checks if a number is even:
+
+[source,python]
+----
+def ma_dhabanbaa(lambar):
+    if lambar % 2 == 0:
+        return True
+    return False
+
+
+for i in range(100):
+    if ma_dhabanbaa(i):
+        print(i)
+----
 
 
 == Week 2: Build Web apps with Flask: Part1
