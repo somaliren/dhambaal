@@ -46,22 +46,33 @@ class Projects:
     def __repr__(self):
         return f"{self.name}, {self.location}"
 
+
+@dataclass
+class Applicant:
+    name:str
+    years_of_exp:int
 @dataclass
 class Company:
     name:str
-    opening_positoins: List[OpeningPositions]
+    opening_positions: List[OpeningPositions]
     benefits: List[Benefits]
     projects:List[Projects]
 
     def invite(self,you):
         # Benefits
         print(f"{you} welcome to {self.name}")
-        for indx, benefit in enumerate(self.benefits):
+        for indx, benefit in enumerate(self.benefits, start=1):
             print(f"{indx}. {benefit}")
         
         # Projects
-        for indx, project in enumerate(self.projects):
+        for indx, project in enumerate(self.projects,start=1):
             print(f"{indx}. {project}")
+    
+    def opening_p(self,experience):
+        for indx, job in enumerate(self.opening_positions):
+            if self.opening_positions[indx].experience <= experience :
+                print(f"{indx}. {job}")
+
         
 
 # Department = [
@@ -72,6 +83,8 @@ POSITIONS = [
     OpeningPositions("Business Developer","Wadajir District",7),
     OpeningPositions("System Engineer","Hodan District",15)
 ]
+
+# print(len(POSITIONS))
 
 
 BENEFITS = [
@@ -89,23 +102,24 @@ PROJECTS = [
 
 def apply_job():
     try:
+     
         you = input("Your Name: ")
         experience = int(input("Years of experience: "))
-        somaliREN = Company("SomaliREN",opening_positoins=POSITIONS,benefits=BENEFITS,projects=PROJECTS) 
-    #    somaliREN.invite(you)
-        for indx, job in enumerate(POSITIONS):
-            if POSITIONS[indx].experience <= experience :
-                print(f"{indx}. {job}")
-        
-       
-            
-        # else:
-        #     print("No Opening Positons")
-            
+        applicant = Applicant(name=you,years_of_exp=experience)
+        somaliREN = Company("SomaliREN",opening_positions=POSITIONS,benefits=BENEFITS,projects=PROJECTS) 
+        somaliREN.opening_p(applicant.years_of_exp) # List of opening positions
+        user_input = int(input('Select Position you would like to apply: '))
+        if not user_input in range(0,len(POSITIONS)):
+            return "Incorrect value"
+    
+        select_position = POSITIONS[user_input]
+        if applicant.years_of_exp >= select_position.experience:
+            return somaliREN.invite(applicant.name)
+        return "Sorry!, You are not qualified for this job"     
     except ValueError:
         print("Wrong Command")
     
-apply_job()
+print(apply_job())
 
 
 
