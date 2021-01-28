@@ -35,10 +35,16 @@ class Benefits:
     name:str
     description:str = None
 
+    def __repr__(self):
+        return f"{self.name}"
+
 @dataclass
 class Projects:
     name:str
     location:str
+
+    def __repr__(self):
+        return f"{self.name}, {self.location}"
 
 @dataclass
 class Company:
@@ -85,13 +91,13 @@ def apply_job():
     try:
         you = input("Your Name: ")
         experience = int(input("Years of experience: "))
-
+        somaliREN = Company("SomaliREN",opening_positoins=POSITIONS,benefits=BENEFITS,projects=PROJECTS) 
+    #    somaliREN.invite(you)
         for indx, job in enumerate(POSITIONS):
             if POSITIONS[indx].experience <= experience :
                 print(f"{indx}. {job}")
-         
-        somaliREN = Company("SomaliREN",opening_positoins=POSITIONS,benefits=BENEFITS,projects=PROJECTS) 
-        somaliREN.invite(you)
+        
+       
             
         # else:
         #     print("No Opening Positons")
