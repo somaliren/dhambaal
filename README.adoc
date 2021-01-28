@@ -12,9 +12,6 @@ endif::[]
 
 = Web Application Development with Python(Flask) Workshop 
 
-In this workshop we will build a web application using Flask.
-Flask is a *micro web framework* written in Python. It is classified as a microframework because it does not require particular tools or libraries. It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions.
-
 
 == Week 0: Python Environment Setup 
 
@@ -163,6 +160,16 @@ for i in range(100):
 - Creating summary model
 - Adding values through REPL
 - Displaying summaries in the frontend
+
+=== Introduction to Flask
+
+Flask is a *micro web framework* written in Python. It is classified as a microframework because it does not require particular tools or libraries. It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions.
+
+Flask depends on the Jinja template engine and the Werkzeug WSGI toolkit.
+
+== What is Werkzeug?
+
+
 
 == Week 3: Build Web apps with Flask: Part2
 
