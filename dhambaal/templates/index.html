@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1>Flask Web Development Course</h1>
+{%for post in summary%}
+    <h4>{{post.get("title")}}</h4>
+    <p>{{post.get("content")}}</p>
+{%endfor%}
+
 </body>
 </html>

@@ -8,10 +8,11 @@ posts = [
     {"title":"Where can I get some?", "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"}     
 ]
 @app.route("/")
-# def index():
-#     return {"Message":"Success","content":"Hello Flask"}
-
 def index():
-    return render_template("index.html")
+    return {"Message":"Success","content":"Hello Flask"}
+
+# @app.route("/")
+# def index():
+#     return render_template("index.html",summary=posts)
 
 
