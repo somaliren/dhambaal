@@ -1,9 +1,3 @@
-first_name = "Jaamac"
+from dhambaal import app
 
-PI = 3.1415
-SERVER = "Server"
-PI = "Another"
-print(PI)
-
-
-el = set()
+app.run(port=5000)

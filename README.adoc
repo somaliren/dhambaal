@@ -170,6 +170,41 @@ Flask depends on the Jinja template engine and the Werkzeug WSGI toolkit.
 == What is Werkzeug?
 
 
+== Dhambaal App Structure
+
+[source,bash]
+----
+.
+├── Pipfile
+├── Pipfile.lock
+├── README.adoc
+├── README.pdf
+├── Resources
+│   ├── app.js
+│   ├── app.py
+│   ├── classes_1.py
+│   ├── classes_2.py
+│   ├── decorator.py
+│   ├── dict.py
+│   ├── functions_1.py
+│   ├── generator_1.py
+│   ├── lists.py
+│   ├── project_homework.py
+│   ├── sample.py
+│   ├── set_1.py
+│   └── tuple_1.py
+├── app.py
+└── dhambaal
+    ├── __init__.py
+    ├── static
+    │   ├── css
+    │   ├── images
+    │   └── js
+    └── templates
+        └── index.html
+----
+
+
 
 == Week 3: Build Web apps with Flask: Part2
 

@@ -124,6 +124,11 @@ print(apply_job())
 
 
 
+class GoogleMeet:
+    def __init__(self,name):
+        pass
+
+
 
 
 
