@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhambaal</title>
-</head>
-<body>
+{%extends 'base.html' %}
+<!-- Dhambaal - Home -->
+{%block title%}
+Home
+{%endblock title%}
+{%block content%}
     <h1>Flask Web Development Course</h1>
-{%for post in summary%}
-    <h4>{{post.get("title")}}</h4>
-    <p>{{post.get("content")}}</p>
-{%endfor%}
+    {%for post in summary%}
+        <h4>{{post.get("title")}}</h4>
+        <p>{{post.get("content")}}</p>
+    {%endfor%}
+{%endblock content%}
 
-</body>
-</html>
