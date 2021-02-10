@@ -5,9 +5,12 @@ Home
 {%endblock title%}
 {%block content%}
     <h1>Flask Web Development Course</h1>
-    {%for post in summary%}
-        <h4>{{post.get("title")}}</h4>
-        <p>{{post.get("content")}}</p>
+    {%for post in posts%}
+        <h4>{{post.title}}</h4>
+        <p>{{post.id}}</p>
+        <p>{{post.description}}</p>
+        <p>{{post.source}}</p>
+        <p>{{post.create_at}}</p>
     {%endfor%}
 {%endblock content%}
 
