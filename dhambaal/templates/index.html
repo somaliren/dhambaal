@@ -12,5 +12,11 @@ Home
         <p>{{post.source}}</p>
         <p>{{post.create_at}}</p>
     {%endfor%}
+    <br/>
+    <h1>Categories</h1>
+    {%for category in categories%}
+    {{ category.name}}<br/>
+    {%endfor%}
+
 {%endblock content%}
 

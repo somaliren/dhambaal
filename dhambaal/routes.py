@@ -2,12 +2,14 @@ from operator import pos
 from flask import render_template, request, redirect
 from dhambaal import app
 from dhambaal.models.Post import Post
+from dhambaal.models.Categories import Category
 
 
 @app.route("/", methods=['GET'])
 def index():
     posts = Post.query.all()
-    return render_template("index.html", posts=posts)
+    categories = Category.query.all()
+    return render_template("index.html", posts=posts, categories=categories)
 
 
 @app.route("/admin", methods=['GET', 'POST'])
@@ -22,3 +24,17 @@ def create_post():
         return redirect("/")
 
     return render_template("post_form.html")
+
+
+@app.route("/category", methods=['GET', 'POST'])
+def create_category():
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+
+        # Inserting form values to the database
+        category = Category(name=name, description=description)
+        category.save_to_db()
+        return redirect("/")
+
+    return render_template("category_form.html")
