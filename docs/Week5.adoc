@@ -24,7 +24,7 @@ This week, we'll cover the following topics:
 - Flask Forms
 - Form validations
 - Introducing Jinja2 Macros
-
+- Flash Messages
 ==== Requirement 
 NOTE: To use flask forms, activate python environment with `pipenv shell` and run `pipenv install Flask-WTF2`
 
