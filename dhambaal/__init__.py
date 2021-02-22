@@ -14,4 +14,8 @@ def create_tables():
     db.create_all()
 
 
-from dhambaal import routes
+# REGISTER BLUEPRINTS
+from dhambaal.dashboard.views import admin
+app.register_blueprint(admin)
+from dhambaal.views import site
+app.register_blueprint(site)

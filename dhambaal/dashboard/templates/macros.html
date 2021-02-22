@@ -1,0 +1,8 @@
+{% macro section_heading(title=None,link=None,btn_text=None) %}
+
+<div class="section-heading">
+  <h1 class="title is-3">{{title}}</h1>
+  <an class="button is-primary" href="{{url_for(link)}}">{{btn_text}}</an>
+</div>
+
+{% endmacro %}
