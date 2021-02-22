@@ -1,0 +1,27 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:icons: font
+:source-highlighter: pygments
+:pygments-style: emacs
+
+
+
+
+=== Week 6: Build Web apps with Flask: (Auth section)
+This week, we'll cover the following topics:
+
+- Introducing Flask-Login
+- User Model 
+- User Register Form
+- Login Form
+- Access to protected routes (Dashboard)
+
+
+==== Requirement 
+NOTE: To use flask-login, activate python environment with `pipenv shell` and run `pipenv install Flask-login`
+
