@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect, flash, get_flashed_messages
 from dhambaal.dashboard.models.Post import Post
 from dhambaal.dashboard.models.Categories import Category
-from dhambaal.dashboard.forms.post_form import PostForm
+from dhambaal.dashboard.form import PostForm, CatgoryForm
 
 # Dashboard Blueprint
 dashboard = Blueprint("dashboard", __name__,

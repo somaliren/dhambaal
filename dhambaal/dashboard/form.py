@@ -12,3 +12,11 @@ class PostForm(FlaskForm):
     source = StringField('Source', validators=[
         DataRequired(), length(min=3, max=20)])
     submit = SubmitField('Create')
+
+
+class CatgoryForm(FlaskForm):
+    name = StringField('Title', validators=[
+        DataRequired(), length(min=3, max=20)])
+    description = TextAreaField("Description", validators=[
+                                DataRequired(), length(min=3, max=1500)])
+    submit = SubmitField('Create')
