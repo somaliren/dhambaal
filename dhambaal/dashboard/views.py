@@ -1,35 +1,73 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, url_for, redirect, flash, get_flashed_messages
 from dhambaal.dashboard.models.Post import Post
 from dhambaal.dashboard.models.Categories import Category
+from dhambaal.dashboard.forms.post_form import PostForm
 
-admin = Blueprint("admin", __name__,
-                  url_prefix="/admin", template_folder="templates")
+# Dashboard Blueprint
+dashboard = Blueprint("dashboard", __name__,
+                      url_prefix="/dashboard", template_folder="templates")
 
 
-@admin.route("/")
+@dashboard.route("/")
 def index():
-    return render_template("dashboard.tmpl")
+    return render_template("dashboard.html")
 
 
-@admin.route("/posts")
+@dashboard.route("/posts/")
 def posts():
     posts = Post.query.all()
-    return render_template("posts/posts.tmpl", posts=posts)
+    return render_template("posts/posts.html", posts=posts)
 
 
-@admin.route("/create-post")
+@dashboard.route("/create-post/", methods=['GET', 'Post'])
 def create_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        title = form.data.get('title')
+        description = form.data.get('description')
+        source = form.data.get('source')
+        post = Post(title=title, description=description, source=source)
+        post.save_to_db()
+        flash("Post created successfully", 'is-success')
+        return redirect(url_for('dashboard.posts'))
+    return render_template("posts/create_update.html", form=form, title="Create Form")
 
-    return render_template("posts/create_post.tmpl", posts=posts)
+
+@dashboard.route("/post/<int:id>/update", methods=['GET', 'Post'])
+def update_post(id):
+    post = Post.query.get_or_404(id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.description = form.description.data
+        post.source = form.source.data
+        post.update()
+        flash("Post updated successfully", 'is-success')
+        return redirect(url_for('dashboard.posts'))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.description.data = post.description
+        form.source.data = post.source
+    return render_template("posts/create_update.html", form=form, title="Update Post")
 
 
-@admin.route("/categories")
+@dashboard.route("/post/<int:id>/delete")
+def delete_post(id):
+    post = Post.query.get_or_404(id)
+    if post:
+        post.delete()
+        flash("Post deleted successfully", "is-success")
+        return redirect(url_for('dashboard.posts'))
+    return render_template("posts/posts.html")
+
+
+@dashboard.route("/categories/")
 def categories():
     categories = Category.query.all()
-    return render_template("categories/categories.tmpl", categories=categories)
+    return render_template("categories/categories.html", categories=categories)
 
 
-@admin.route("/create-category")
+@dashboard.route("/create-category")
 def create_category():
 
-    return render_template("categories/create_category.tmpl")
+    return render_template("categories/create_category.html")

@@ -15,13 +15,20 @@ endif::[]
 === Week 6: Build Web apps with Flask: (Auth section)
 This week, we'll cover the following topics:
 
-- Introducing Flask-Login
-- User Model 
+- Removing flash messages after 5 seconds using javascript
+- Implementing delete and edit functionalities  for post and categories
+- Adding category column to posts model
+- Creating User Model 
 - User Register Form
+* Creating registered user's route 
 - Login Form
-- Access to protected routes (Dashboard)
+- Introducing Flask-Login
+- Protecting routes
+- Redirecting to login page when user is not logged in 
 
 
 ==== Requirement 
-NOTE: To use flask-login, activate python environment with `pipenv shell` and run `pipenv install Flask-login`
+NOTE: You need to install `flask-login` and `flask-bcrypt` by  activating your python environment with `pipenv shell` and running `pipenv install Flask-login flask-bcrypt`
+
+
 

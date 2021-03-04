@@ -8,6 +8,7 @@ class Post(db.Model):
     title = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text)
     source = db.Column(db.String(120), nullable=False)
+    # category = db.Column(db.String(120), nullable=False)
     create_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -22,7 +23,8 @@ class Post(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
+    def update(self):
+        db.session.commit()
 # CREATE TABLE 'posts' (id int PrimaryKey, title varchar(120), description Text)
 # insert into posts(title,description,source)values("post title","d")
 # Select * from posts
