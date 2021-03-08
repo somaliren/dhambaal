@@ -1,14 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField, RadioField
 
 from wtforms.validators import DataRequired, length
+from dhambaal.dashboard.models.Categories import Category
 
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[
-                        DataRequired(), length(min=3, max=20)])
+                        DataRequired(), length(min=3, max=50)])
     description = TextAreaField("Description", validators=[
                                 DataRequired(), length(min=3, max=1500)])
+    category = SelectField('Category', choices=[
+                           category.name for category in Category.query.all()])
+    published = RadioField('Publish?', choices=[(
+        'yes', 'Yes'), ('no', 'No')], default='yes')
     source = StringField('Source', validators=[
         DataRequired(), length(min=3, max=20)])
     submit = SubmitField('Create')

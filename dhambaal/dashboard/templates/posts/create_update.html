@@ -9,6 +9,17 @@
     {{form_input(label=form.title.label,errors=form.title.errors,name=form.title,type='input')}}
     {{form_input(label=form.description.label,errors=form.description.errors,name=form.description,type='textarea')}}
     {{form_input(label=form.source.label,errors=form.source.errors,name=form.source,type='input')}}
+    {# Catgoery #}
+    <div class="field">
+        {{ form.category.label(class="label")}}
+        <div class="control">
+            <div class="select">
+                {{form.category}}
+            </div>
+        </div>
+    </div>
+    {{form.published.label(class="label")}}
+    {{form.published()}}
     {{form.submit(class="button is-primary")}}
 </form>
 {% endblock %}

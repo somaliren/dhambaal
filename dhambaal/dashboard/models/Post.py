@@ -1,4 +1,5 @@
 from datetime import datetime
+from enum import unique
 from dhambaal import db
 
 
@@ -8,7 +9,9 @@ class Post(db.Model):
     title = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text)
     source = db.Column(db.String(120), nullable=False)
-    # category = db.Column(db.String(120), nullable=False)
+    category = db.Column(db.String(120))
+    slug = db.Column(db.String(240), unique=True)
+    published = db.Column(db.String(50))
     create_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 

@@ -26,7 +26,10 @@ def create_post():
         title = form.data.get('title')
         description = form.data.get('description')
         source = form.data.get('source')
-        post = Post(title=title, description=description, source=source)
+        category = form.data.get('category')
+        published = form.data.get('published')
+        post = Post(title=title, description=description,
+                    source=source, category=category, published=published)
         post.save_to_db()
         flash("Post created successfully", 'is-success')
         return redirect(url_for('dashboard.posts'))
@@ -41,6 +44,8 @@ def update_post(id):
         post.title = form.title.data
         post.description = form.description.data
         post.source = form.source.data
+        post.published = form.published.data
+        post.category = form.category.data
         post.update()
         flash("Post updated successfully", 'is-success')
         return redirect(url_for('dashboard.posts'))
@@ -48,6 +53,8 @@ def update_post(id):
         form.title.data = post.title
         form.description.data = post.description
         form.source.data = post.source
+        form.published.data = post.published
+        form.category.data = post.category
     return render_template("posts/create_update.html", form=form, title="Update Post")
 
 
