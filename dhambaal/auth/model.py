@@ -29,12 +29,14 @@ class User(db.Model, UserMixin):
     def update(self):
         db.session.commit()
 
-    def validate_email(self, email):
+    @classmethod
+    def validate_email(cls, email):
         email = User.query.filter_by(email=email).first()
         if email:
             return True
 
-    def valiate_username(self, username):
+    @classmethod
+    def valiate_username(cls, username):
         username = User.query.filter_by(username=username).first()
         if username:
             return True
