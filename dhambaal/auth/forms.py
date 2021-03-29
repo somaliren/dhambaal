@@ -32,7 +32,7 @@ class RegisterForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[
-                        DataRequired(), Email()])
+                        DataRequired(), Email()], render_kw={"placeholder": "Your Email"})
     password = PasswordField("Password", validators=[
-        DataRequired()])
+        DataRequired()], render_kw={"placeholder": "Your Password"})
     submit = SubmitField('Login')

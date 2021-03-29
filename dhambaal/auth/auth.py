@@ -4,13 +4,15 @@ from dhambaal.auth.model import User
 from dhambaal.auth.forms import LoginForm, RegisterForm
 # from werkzeug.security import check_password_hash, generate_password_hash
 from flask_bcrypt import generate_password_hash, check_password_hash
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
+from dhambaal.utils.mail import send
+
+
 auth = Blueprint("auth", __name__, template_folder="templates")
 
 
 @auth.route("/login/", methods=['POST', 'GET'])
 def login():
-
     # TODO 1: if user is already logged in we need to redirect to dashboard
     if current_user.is_authenticated:
         return redirect(url_for('dashboard.index'))
@@ -22,6 +24,8 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
             flash("Logged in successfully", 'is-success')
+            send(recipients="amiin@asalsolutions.com",
+                 subject="Test Email", message="This is a test email")
             return redirect(url_for("dashboard.index"))
         else:
             flash("Invalid Credentials", 'is-danger')
@@ -35,13 +39,18 @@ def login():
 
 
 @auth.route('/dashboard/user/logout')
+@login_required
 def logout():
-    pass
+    # CHECK IF USER IS LOGGED IN TO LOGOUT
+    logout_user()
+    flash("Logout successfully", 'is-success')
+    return redirect(url_for("auth.login"))
 
 # Register Route
 
 
 @auth.route("/dashboard/user/register", methods=['POST', 'GET'])
+@login_required
 def register_user():
     form = RegisterForm()
 
@@ -57,6 +66,7 @@ def register_user():
 
 
 @auth.route("/dashboard/users")
+@login_required
 def users():
     users = User.query.all()
     return render_template("users.html", users=users)

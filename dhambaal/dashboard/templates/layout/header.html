@@ -63,7 +63,7 @@
         <div class="navbar-item">
         {% if current_user.is_authenticated%}
         Welcome, {{current_user.name}}
-        <a class="{{url_for('auth.logout')}}"> Logout </a>
+        <a href="{{url_for('auth.logout')}}"> Logout </a>
         {%endif%}
        
         </div>

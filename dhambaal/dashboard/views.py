@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, url_for, redirect, flash,
 from dhambaal.dashboard.models.Post import Post
 from dhambaal.dashboard.models.Categories import Category
 from dhambaal.dashboard.form import PostForm, CatgoryForm
+from flask_login import login_required
 
 # Dashboard Blueprint
 dashboard = Blueprint("dashboard", __name__,
@@ -9,17 +10,20 @@ dashboard = Blueprint("dashboard", __name__,
 
 
 @dashboard.route("/")
+@login_required
 def index():
     return render_template("dashboard.html")
 
 
 @dashboard.route("/posts/")
+@login_required
 def posts():
     posts = Post.query.all()
     return render_template("posts/posts.html", posts=posts)
 
 
 @dashboard.route("/create-post/", methods=['GET', 'Post'])
+@login_required
 def create_post():
     form = PostForm()
     if form.validate_on_submit():
@@ -37,6 +41,7 @@ def create_post():
 
 
 @dashboard.route("/post/<int:id>/update", methods=['GET', 'Post'])
+@login_required
 def update_post(id):
     post = Post.query.get_or_404(id)
     form = PostForm()
@@ -59,6 +64,7 @@ def update_post(id):
 
 
 @dashboard.route("/post/<int:id>/delete")
+@login_required
 def delete_post(id):
     post = Post.query.get_or_404(id)
     if post:
@@ -69,12 +75,14 @@ def delete_post(id):
 
 
 @dashboard.route("/categories/")
+@login_required
 def categories():
     categories = Category.query.all()
     return render_template("categories/categories.html", categories=categories)
 
 
 @dashboard.route("/create-category")
+@login_required
 def create_category():
 
     return render_template("categories/create_category.html")

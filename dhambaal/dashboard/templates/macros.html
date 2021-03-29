@@ -26,3 +26,26 @@
     </div>
 {%endmacro%}
 
+
+
+{# render_input #}
+{% macro render_input(input)%}
+ <div class="field">
+        {{input.label(class='label')}}
+        {%if input.errors %}
+        {%for error in input.errors %}
+        <div class="control">
+        {{input(class='input is-danger')}}
+            <div class="has-text-weight-light has-text-danger">
+                {{error}}
+            </div>
+        </div>
+        {%endfor%}
+        {%else%}
+        <div class="control">
+            {{input(class="input")}}
+        </div>
+        {%endif%}
+    </div>
+{%endmacro%}
+
