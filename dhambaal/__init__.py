@@ -19,7 +19,7 @@ migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 mail = Mail(app)
 
-print(app.config)
+
 # Create Tables before running application
 
 

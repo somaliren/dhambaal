@@ -36,3 +36,23 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[
         DataRequired()], render_kw={"placeholder": "Your Password"})
     submit = SubmitField('Login')
+
+
+class ForgetPassword(FlaskForm):
+    email = StringField('Email', validators=[
+                        DataRequired(), Email()], render_kw={"placeholder": "Your Email"})
+    submit = SubmitField('Forget Password')
+
+    def validate_email(self, email):
+        email = User.query.filter_by(email=self.email.data).first()
+        if not email:
+            raise ValidationError(
+                "To reset your password make sure you have an account first")
+
+
+class ResetPassword(FlaskForm):
+    password = PasswordField("Password", validators=[
+        DataRequired()])
+    confirm_password = PasswordField("Confirm Password", validators=[
+        DataRequired(), EqualTo('password', message="Confirm Password field must be equal to password")])
+    submit = SubmitField('Reset Password')

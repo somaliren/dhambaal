@@ -25,15 +25,15 @@
     {%endwith%}
     <div class="container">
         <div class="auth-header" >
-            <h2 class="title is-2 has-text-grey-light">Login Form</h2>
+            <h2 class="title is-2 has-text-grey-light">Password Reset Form</h2>
         </div>
     <form method="POST">
         {{form.csrf_token()}}
-        {{render_input(form.email)}}
         {{render_input(form.password)}}
+        {{render_input(form.confirm_password)}}
         <div class="forget-password">
         {{form.submit(class="button is-primary")}}
-        <a href="{{url_for('auth.forget_password')}}">Forget Password</a>
+        <a href="{{url_for('auth.login')}}">Login Form</a>
         </div>
     </form>
     

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, flash, redirect
 from flask.helpers import get_env
 from dhambaal.auth.model import User
-from dhambaal.auth.forms import LoginForm, RegisterForm
+from dhambaal.auth.forms import LoginForm, RegisterForm, ForgetPassword, ResetPassword
 # from werkzeug.security import check_password_hash, generate_password_hash
 from flask_bcrypt import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, logout_user, login_required
@@ -71,9 +71,40 @@ def users():
     users = User.query.all()
     return render_template("users.html", users=users)
 
-# A = 95
-# a = 67
+
+# Forget password
+
+@auth.route("/forget_password/", methods=['POST', 'GET'])
+def forget_password():
+    # TODO 1: if user is already logged in we need to redirect to dashboard
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard.index'))
+    form = ForgetPassword()
+    user = User.query.filter_by(email=form.email.data).first()
+    if form.validate_on_submit():
+        token = user.get_reset_token()
+        send(recipients=form.email.data,
+             subject="Reset Password", message=f"Hello {user.name},  To reset your password visit this link {url_for('auth.reset_token',token=token, _external=True)}")
+        flash(
+            "An email has been sent with instructions to reset your password", 'is-success')
+        return redirect(url_for("auth.login"))
+    return render_template("forget_password.html", form=form)
 
 
-#  128   64  32 16  8  4  2  1
-# 0     1     0  0   0  0  0    1
+@auth.route('/reset_token/<token>', methods=['POST', 'GET'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard.index'))
+
+    form = ResetPassword()
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash("Invalid / expire token", 'is-warning')
+
+    if form.validate_on_submit():
+        user.password = generate_password_hash(
+            form.password.data).decode("utf-8")
+        user.update()
+        flash("Your password has been updated, you can now login", 'is-success')
+        return redirect(url_for('auth.login'))
+    return render_template('reset_token.html', form=form)

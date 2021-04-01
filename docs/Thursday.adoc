@@ -1,3 +1,1 @@
-- Create Forget password 
-- Reset forget password 
 - decorators 

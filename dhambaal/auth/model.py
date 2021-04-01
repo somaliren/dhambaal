@@ -1,9 +1,11 @@
-from dhambaal import db, login_manager
+from dhambaal import db, app, login_manager
 from flask_login import UserMixin
 from datetime import datetime
-
+from itsdangerous import JSONWebSignatureSerializer as Serializer
 
 # Load User
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get_or_404(user_id)
@@ -41,5 +43,21 @@ class User(db.Model, UserMixin):
         if username:
             return True
 
-    # if validate_email(email):
-        # already taken
+    s = Serializer(app.config['SECRET_KEY'])
+
+    def get_reset_token(self):
+        """
+        This method gets creates reset token with userId
+        examples: 
+        user = User.query.filter_by(email=form.email.data)
+        token = user.get_reset_token()
+         """
+        return self.s.dumps({"user_id": self.id}).decode("utf-8")
+
+    @classmethod
+    def verify_reset_token(cls, token):
+        try:
+            user_id = cls.s.loads(token).get('user_id')
+        except:
+            return None
+        return User.query.get(user_id)
