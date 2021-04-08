@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash, redirect
+from flask import Blueprint, render_template, url_for, flash, redirect, request
 from flask.helpers import get_env
 from dhambaal.auth.model import User
 from dhambaal.auth.forms import LoginForm, RegisterForm, ForgetPassword, ResetPassword
@@ -24,9 +24,9 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
             flash("Logged in successfully", 'is-success')
-            send(recipients="amiin@asalsolutions.com",
-                 subject="Test Email", message="This is a test email")
-            return redirect(url_for("dashboard.index"))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for("dashboard.index"))
+
         else:
             flash("Invalid Credentials", 'is-danger')
             return redirect(url_for("auth.login"))
@@ -38,8 +38,8 @@ def login():
     return render_template("login.html", form=form)
 
 
-@auth.route('/dashboard/user/logout')
-@login_required
+@ auth.route('/dashboard/user/logout')
+@ login_required
 def logout():
     # CHECK IF USER IS LOGGED IN TO LOGOUT
     logout_user()
@@ -47,10 +47,13 @@ def logout():
     return redirect(url_for("auth.login"))
 
 # Register Route
+# admin
+# staff
+# user
 
 
-@auth.route("/dashboard/user/register", methods=['POST', 'GET'])
-@login_required
+@ auth.route("/dashboard/user/register", methods=['POST', 'GET'])
+@ login_required
 def register_user():
     form = RegisterForm()
 
@@ -65,8 +68,8 @@ def register_user():
     return render_template("register.html", form=form, title="Add User")
 
 
-@auth.route("/dashboard/users")
-@login_required
+@ auth.route("/dashboard/users")
+@ login_required
 def users():
     users = User.query.all()
     return render_template("users.html", users=users)
@@ -74,7 +77,7 @@ def users():
 
 # Forget password
 
-@auth.route("/forget_password/", methods=['POST', 'GET'])
+@ auth.route("/forget_password/", methods=['POST', 'GET'])
 def forget_password():
     # TODO 1: if user is already logged in we need to redirect to dashboard
     if current_user.is_authenticated:
@@ -91,7 +94,7 @@ def forget_password():
     return render_template("forget_password.html", form=form)
 
 
-@auth.route('/reset_token/<token>', methods=['POST', 'GET'])
+@ auth.route('/reset_token/<token>', methods=['POST', 'GET'])
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('dashboard.index'))

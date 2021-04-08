@@ -9,7 +9,7 @@ class BaseConfig:
     """Base Configurations """
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = os.getenv("SECRET_KEY")
+    SECRET_KEY = "HSDFKHSDFKHSDKFHKSF"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEBUG = True
 

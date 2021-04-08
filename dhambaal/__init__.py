@@ -15,6 +15,9 @@ app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
+login_manager.login_view = "auth.login"
+login_manager.login_message = "Fadlan login samee si aad ugu gudubto page-ka"
+login_manager.login_message_category = "is-info"
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 mail = Mail(app)

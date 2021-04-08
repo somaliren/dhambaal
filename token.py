@@ -1,8 +1,16 @@
-from itsdangerous import JSONWebSignatureSerializer as Serializer
+# Ternerry operators
 
-s = Serializer("sdhfkwhy48y27843784y783sdnfjksdfjk", expires_in=2)
-
-token = s.dumps({"user_id": 14}).decode("utf-8")
+from werkzeug.utils import redirect
 
 
-s.loads(token).get('user_id')
+Khamiis = False
+# if Khamiis:
+#     print("Maanta waa khamiis")
+# else:
+#     print("maanta khamiis maahan")
+
+# message = "Maanta waa khamiis" if Khamiis else "maanta khamiis maahan"
+# print(message)
+
+# next_page = True
+# redirect next_page if next_page else 'da'

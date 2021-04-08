@@ -1,3 +1,4 @@
+from enum import unique
 from dhambaal import db, app, login_manager
 from flask_login import UserMixin
 from datetime import datetime
@@ -16,6 +17,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(244), unique=True, nullable=False)
+    # role = db.Column(db.String(40), unique=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(244), nullable=False)
     confirmed_at = db.Column(db.DateTime())

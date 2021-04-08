@@ -37,7 +37,7 @@ def create_post():
         post.save_to_db()
         flash("Post created successfully", 'is-success')
         return redirect(url_for('dashboard.posts'))
-    return render_template("posts/create_update.html", form=form, title="Create Form")
+    return render_template("posts/create_update.html", form=form, title="Create Form"), 200
 
 
 @dashboard.route("/post/<int:id>/update", methods=['GET', 'Post'])
